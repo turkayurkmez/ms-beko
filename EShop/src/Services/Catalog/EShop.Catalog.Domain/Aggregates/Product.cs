@@ -20,6 +20,8 @@ namespace EShop.Catalog.Domain.Aggregates
         public int Stock { get; private set; }
         public int? CategoryId { get; private set; }
 
+        public Category? Category { get; private set; }
+
         public string? ImageUrl { get; private set; } = "noImage.png";
         public Product()
         {

@@ -1,4 +1,10 @@
+using EShop.Catalog.Application.Contracts;
 using EShop.Catalog.Application.Features.Products.Queries;
+using EShop.Catalog.Infrastructure.EventHandlers;
+using EShop.Catalog.Infrastructure.Persistence;
+using EShop.Catalog.Infrastructure.Repositories;
+using EShop.Catalog.Infrastructure.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +15,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddMediatR(config=>config.RegisterServicesFromAssemblyContaining<GetAllProductsQueryHandler>());
+
+builder.Services.AddInfrastucture(builder.Configuration);
+builder.Services.AddApplication();
+
 
 var app = builder.Build();
 

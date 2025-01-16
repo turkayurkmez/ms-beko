@@ -4,3 +4,15 @@ GET {{EShop.Catalog.API_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+GET {{EShop.Catalog.API_HostAddress}}/api/products
+
+###
+
+@id = c8293825-eeac-4e83-8efc-09ea5d0416c7
+@discount=0.15
+PUT {{EShop.Catalog.API_HostAddress}}/api/products/{{id}}/discount/{{discount}}
+Content-Type: application/json
+
+
+###

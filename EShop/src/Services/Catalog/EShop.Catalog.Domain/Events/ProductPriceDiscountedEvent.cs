@@ -1,4 +1,5 @@
 ﻿using EShop.Shared.SharedLibrary.Domain;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EShop.Catalog.Domain.Events
 {
-    public class ProductPriceDiscountedEvent : DomainEvent
+    public class ProductPriceDiscountedEvent : DomainEvent, INotification
     {
         public Guid ProductId { get; private set; }
         public decimal OldPrice { get; private set; }
