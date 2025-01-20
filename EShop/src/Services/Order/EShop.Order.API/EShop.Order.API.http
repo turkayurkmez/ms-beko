@@ -1,0 +1,21 @@
+@EShop.Order.API_HostAddress = http://localhost:5216
+
+GET {{EShop.Order.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST {{EShop.Order.API_HostAddress}}/orderCreate
+Content-Type: application/json
+{
+  "customerId": "test-user",
+  "orderItems": [
+    {
+      "productId": "782a284e-1124-409b-b17b-1b0a20c38b99",
+      "quantity": 5,
+      "price":100
+    }
+  ]
+}
+
+###

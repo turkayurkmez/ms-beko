@@ -1,5 +1,6 @@
 ﻿using EShop.Catalog.Domain.Aggregates;
 using EShop.Shared.SharedLibrary.Domain;
+using MassTransit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -84,6 +85,10 @@ namespace EShop.Catalog.Infrastructure.Persistence
 
 
                 );
+
+            modelBuilder.AddInboxStateEntity();
+            modelBuilder.AddOutboxMessageEntity();
+            modelBuilder.AddOutboxStateEntity();
 
 
 

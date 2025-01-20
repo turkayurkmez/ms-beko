@@ -1,0 +1,25 @@
+﻿
+Olay Analiz Dokümanı:
+  1. Happy Path senaryosunu belirleyin.
+  2. Olumsuz senaryoları belirleyin.
+
+  Örnek: Sipariş oluşturma olay akışı:
+
+  Happy Path:
+     (Db'de sipariş oluşturulur fakat Status flag'i Pending)
+  1. Sipariş oluşturuldu (OrderId, CustomerId, OrderItems) olayı tetiklenir.
+  2. Stock servisi, "Sipariş oluşturuldu" olayını dinler ve stok kontrolü yapar.
+  3. Stok yeterliyse, "Stok yeterli" olayını tetikler.
+  4. Payment servisi, "Stok yeterli" olayını dinler ve ödeme işlemi gerçekleştirir.
+  5. Ödeme başarılıysa, "Ödeme başarılı" olayını tetikler.
+  6. Order servisi, "Ödeme başarılı" olayını dinler ve sipariş durumunu "Completed" olarak günceller.
+
+  Olumsuz Senaryolar:
+  1. Stok yetersizse, "Stok yetersiz" olayı tetiklenir.
+  2. Order servisi, "Stok yetersiz" olayını dinler ve sipariş durumunu "Cancelled" olarak günceller.
+  3. Payment servisi, "Ödeme başarısız" olayını tetikler.
+  4. Order servisi, "Ödeme başarısız" olayını dinler ve sipariş durumunu "Failed" olarak günceller.
+
+  Bu olay akışını yönetmek için iki seçeneğiniz var:
+   1. Careography saga pattern
+   2. Orchestration saga pattern

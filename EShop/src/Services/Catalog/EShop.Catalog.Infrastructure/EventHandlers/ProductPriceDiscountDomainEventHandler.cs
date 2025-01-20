@@ -1,4 +1,6 @@
 ﻿using EShop.Catalog.Domain.Events;
+using EShop.EventBus;
+using MassTransit;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EShop.Catalog.Infrastructure.EventHandlers
 {
-    public class ProductPriceDiscountDomainEventHandler(ILogger<ProductPriceDiscountDomainEventHandler> logger) : INotificationHandler<ProductPriceDiscountedEvent>
+    public class ProductPriceDiscountDomainEventHandler(ILogger<ProductPriceDiscountDomainEventHandler> logger, IPublishEndpoint publisher) : INotificationHandler<ProductPriceDiscountedEvent>
     {
 
 
@@ -18,6 +20,20 @@ namespace EShop.Catalog.Infrastructure.EventHandlers
             logger.LogInformation($"{notification.ProductId} id'li ürünün eski fiyatı {notification.OldPrice} yenisi ise {notification.NewPrice}");
 
             //burada, DomainEvent Integration Event'e dönüştürülecek ve RabbitMQ, Kafka gibi bir mesajlaşma aracı ile diğer mikroservislere gönderilecek!!!
+            var productPriceDiscountEvent = new ProductPriceDiscountEvent(notification.ProductId, notification.NewPrice, notification.OldPrice);
+
+
+
+            /*
+             *  Outbox pattern işleyişi:
+             *    1. İş mantığı (fiyat güncelleme) ve outbox veritabanı kaydı transaction içerisinde gerçekleşir.
+             *    2. Background job/service, outbox tablosunu düzenli olarak kontrol eder             *    
+             *    3. İşlenmemiş kayıtları alır ve ilgili event'i yayınlar
+             *    4. İşlenen kayıtların durumunu günceller veya siler
+             */
+
+
+            publisher.Publish(productPriceDiscountEvent);
 
             return Task.CompletedTask;
         }
