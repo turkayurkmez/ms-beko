@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option csharp_namespace = "EShop.Basket.API.Protos";
+
+package basket;
+
+service BasketService {
+	rpc GetBasket (GetBasketRequest) returns (BasketResponse);
+	rpc UpdateBasket (UpdateBasketRequest) returns (BasketResponse);
+	rpc AddItemToBasket (AddItemToBasketRequest) returns (BasketResponse);
+}
+
+message GetBasketRequest {
+	string buyerId = 1;
+}
+
+message UpdateBasketRequest {
+	string buyerId = 1;
+	repeated BasketItem items = 2;
+}
+
+message AddItemToBasketRequest {
+	string buyerId = 1;
+	BasketItem item = 2;
+}
+
+message BasketResponse {
+	string buyerId = 1;
+	repeated BasketItem items = 2;
+}
+
+message BasketItem {
+	string productId = 1;
+	string productName = 2;
+	int32 quantity = 3;
+	double price = 4;
+}
+

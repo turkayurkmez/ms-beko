@@ -1,4 +1,6 @@
 ﻿using EShop.Catalog.Domain.Events;
+using EShop.Catalog.Infrastructure.Migrations;
+using EShop.Catalog.Infrastructure.Persistence;
 using EShop.EventBus;
 using MassTransit;
 using MediatR;
@@ -31,6 +33,11 @@ namespace EShop.Catalog.Infrastructure.EventHandlers
              *    3. İşlenmemiş kayıtları alır ve ilgili event'i yayınlar
              *    4. İşlenen kayıtların durumunu günceller veya siler
              */
+
+
+            //Event sourcing:
+            //Event sourcing, bir entity'nin state'ini değiştiren her bir işlemi bir event olarak kaydetmektir.
+
 
 
             publisher.Publish(productPriceDiscountEvent);

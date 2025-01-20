@@ -1,0 +1,19 @@
+﻿
+Microservices mimarisinde kullandığımız tasarım desenleri:
+ 1. Publisher servis, RabbitMQ'ya mesaj gönderemezse
+      -- Outbox pattern
+ 2. Subscriber servis, RabbitMQ'dan mesaj alamazsa
+      -- Dead Letter Queue pattern
+ 3. Tekrar deneme ve hata yönetimi:
+      -- Circuit Breaker pattern
+      -- Retry pattern
+ 4. RabbitMQ'da mesajlar kaybolursa:
+      -- Event Sourcing pattern
+ 
+ SAGA Pattern'leri:
+ 1. Careography saga pattern: Her olay, başka bir olayı tetikler.
+ 2. Orchestration saga pattern: Tüm olay akışını yöneten bir servis vardır. Bu state machine deseninin bir uyarlamasıdır.
+
+
+
+ 
