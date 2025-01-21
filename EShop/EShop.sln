@@ -43,6 +43,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShop.Orders.Infrastructure
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{80B9F1C7-3A1A-43CA-90D2-6CE624051DFF}"
 	ProjectSection(SolutionItems) = preProject
+		Endpoints.txt = Endpoints.txt
 		EventFlow.txt = EventFlow.txt
 		MessagingPatterns.txt = MessagingPatterns.txt
 	EndProjectSection
@@ -50,6 +51,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShop.Stock.API", "src\Services\Stock\EShop.Stock.API\EShop.Stock.API.csproj", "{05DA4F3C-8059-49BC-9298-831612B928C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShop.Payment.API", "src\Services\Payment\EShop.Payment.API\EShop.Payment.API.csproj", "{BCE2A862-E0DA-475B-8AA9-E63E54B79396}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{9A2BCC08-4F88-407E-A13D-3C152C4F8E88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShop.ApiGateways.YARP", "src\ApiGateways\EShop.ApiGateways.YARP\EShop.ApiGateways.YARP.csproj", "{8B79074C-965C-46AC-87DB-018EE9CDD3EC}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DD22F0D6-2422-4786-A77B-87B6E107975D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +112,14 @@ Global
 		{BCE2A862-E0DA-475B-8AA9-E63E54B79396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCE2A862-E0DA-475B-8AA9-E63E54B79396}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCE2A862-E0DA-475B-8AA9-E63E54B79396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B79074C-965C-46AC-87DB-018EE9CDD3EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B79074C-965C-46AC-87DB-018EE9CDD3EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B79074C-965C-46AC-87DB-018EE9CDD3EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B79074C-965C-46AC-87DB-018EE9CDD3EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD22F0D6-2422-4786-A77B-87B6E107975D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD22F0D6-2422-4786-A77B-87B6E107975D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD22F0D6-2422-4786-A77B-87B6E107975D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD22F0D6-2422-4786-A77B-87B6E107975D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,5 +146,7 @@ Global
 		{80B9F1C7-3A1A-43CA-90D2-6CE624051DFF} = {5735E130-3A18-4C08-B0C1-1DFADCDE4B75}
 		{05DA4F3C-8059-49BC-9298-831612B928C1} = {BB018439-9283-484F-BF38-7097660FB591}
 		{BCE2A862-E0DA-475B-8AA9-E63E54B79396} = {FBB47603-FF99-4718-9F0D-4BB02E9F99EB}
+		{9A2BCC08-4F88-407E-A13D-3C152C4F8E88} = {5735E130-3A18-4C08-B0C1-1DFADCDE4B75}
+		{8B79074C-965C-46AC-87DB-018EE9CDD3EC} = {9A2BCC08-4F88-407E-A13D-3C152C4F8E88}
 	EndGlobalSection
 EndGlobal

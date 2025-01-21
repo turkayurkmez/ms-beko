@@ -38,11 +38,12 @@ builder.Services.AddMassTransit(brConfig =>
 
     });
 
-    
+
+    //aşağıda, 'rabbitmq' olarak belirtilen değer, docker-compose.yml dosyasında tanımlanan servis adıdır.
 
     brConfig.UsingRabbitMq((context, config) =>
     {
-        config.Host("localhost", "/", h =>
+        config.Host("rabbitmq", "/", h =>
         {
             h.Username("guest");
             h.Password("guest");
@@ -73,5 +74,9 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+await DatabaseInitializer.CreateDatabaseAsync(app);
+
 
 app.Run();

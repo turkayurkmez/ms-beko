@@ -1,0 +1,75 @@
+services:
+  ms-sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "Password123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
+     
+    healthcheck:
+        test: [ "CMD", "/opt/mssql-tools/bin/sqlcmd", "-U", "sa", "-P", "Password123", "-Q", "SELECT 1" ]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+    healthcheck:
+        test: ["CMD", "rabbitmqctl", "status"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+
+  eshop.apigateways.yarp:
+    image: ${DOCKER_REGISTRY-}eshopapigatewaysyarp
+    build:
+      context: .
+      dockerfile: src/ApiGateways/EShop.ApiGateways.YARP/Dockerfile
+
+  eshop.basket.api:
+    image: ${DOCKER_REGISTRY-}eshopbasketapi
+    build:
+      context: .
+      dockerfile: src/Services/Basket/EShop.Basket.API/Dockerfile
+    depends_on:
+      - rabbitmq
+
+
+  eshop.catalog.api:
+    image: ${DOCKER_REGISTRY-}eshopcatalogapi
+    build:
+      context: .
+      dockerfile: src/Services/Catalog/EShop.Catalog.API/Dockerfile
+
+    environment:
+       DefaultHostName: "ms-sql-server"
+       DefaultPassword: "Password123"
+    depends_on:
+      - ms-sql-server
+      - rabbitmq 
+
+
+  eshop.order.api:
+    image: ${DOCKER_REGISTRY-}eshoporderapi
+    build:
+      context: .
+      dockerfile: src/Services/Order/EShop.Order.API/Dockerfile
+    depends_on:
+        - rabbitmq
+
+
+  eshop.payment.api:
+    image: ${DOCKER_REGISTRY-}eshoppaymentapi
+    build:
+      context: .
+      dockerfile: src/Services/Payment/EShop.Payment.API/Dockerfile
+    depends_on:
+        - rabbitmq
+

@@ -53,7 +53,7 @@ builder.Services.AddMassTransit(brConfig =>
 
     brConfig.UsingRabbitMq((context, config) =>
     {
-        config.Host("localhost", "/", h =>
+        config.Host("rabbitmq", "/", h =>
         {
             h.Username("guest");
             h.Password("guest");
